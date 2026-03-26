@@ -17,7 +17,6 @@ int main(){
     printf("===========================\n");
 
     //apresentacao da semana//
-
     while(op_valida==0){
 
         printf("\nSelecione a Semana do Mes:\n\n1 - Primeira Semana\n2 - Segunda Semana\n3 - Terceira Semana\n4 - Quarta Semana\nDigite: ");
@@ -41,7 +40,6 @@ int main(){
     }
 
     //gastos diarios//
-
     for(i = 0; i<7; i++){
         dias_da_semana(i);
 
@@ -59,6 +57,7 @@ int main(){
         printf("\nGasto Diario Total: R$ %.2f\n", total_diario[i]);
 
         gasto_semanal = gasto_semanal + total_diario[i];
+
         }
 
 
