@@ -31,11 +31,15 @@ double ler_num_virgula(){ //transformando letras para numeros//
 
 }
 
+typedef struct Gastos{
+    double semana;
+    double total_diario[7], gasto_faculdade[7],gasto_extra[7], gasto_trabalho[7];
+};
+
 int main(){
 
-    double total_diario[7], gasto_faculdade[7],gasto_extra[7], gasto_trabalho[7];
     double gasto_semanal = 0.0, op_valida = 0.0;
-    double semana;
+    struct Gastos gastos_gerais;
 
     setlocale(LC_NUMERIC, "pt_BR.UTF-8"); 
 
@@ -48,25 +52,25 @@ int main(){
 
         printf("\nSelecione a Semana do Mes:\n\n1 - Primeira Semana\n2 - Segunda Semana\n3 - Terceira Semana\n4 - Quarta Semana\nDigite: ");
 
-        semana = ler_num_virgula();
+        gastos_gerais.semana = ler_num_virgula();
 
-        while(semana == -1){
+        while(gastos_gerais.semana == -1){
             printf("\nErro! Digite Novamente!");
 
             printf("\nSelecione a Semana do Mes:\n\n1 - Primeira Semana\n2 - Segunda Semana\n3 - Terceira Semana\n4 - Quarta Semana\nDigite: ");
-                semana = ler_num_virgula();
+                gastos_gerais.semana = ler_num_virgula();
         }
 
-        if(semana == 1){
+        if(gastos_gerais.semana == 1){
         printf("\nSEMANA 01:\n");
         op_valida = 1;
-        }else if(semana == 2){
+        }else if(gastos_gerais.semana == 2){
         printf("\nSEMANA 02:\n");
         op_valida = 1;
-        }else if(semana == 3){
+        }else if(gastos_gerais.semana == 3){
         printf("\nSEMANA 03:\n");
         op_valida = 1;
-        }else if(semana == 4){
+        }else if(gastos_gerais.semana == 4){
         printf("\nSEMANA 04:\n");
         op_valida = 1;
         }else{
@@ -80,42 +84,42 @@ int main(){
 
         printf("\nGastos Faculdade: R$ ");
 
-        gasto_faculdade[i] = ler_num_virgula();
+        gastos_gerais.gasto_faculdade[i] = ler_num_virgula();
 
-        while(gasto_faculdade[i] == -1){
+        while(gastos_gerais.gasto_faculdade[i] == -1){
             printf("\nErro! Digite Novamente!");
 
             printf("\nGastos Faculdade: R$ ");
-                gasto_faculdade[i] = ler_num_virgula();
+                gastos_gerais.gasto_faculdade[i] = ler_num_virgula();
         }
 
         printf("Gastos Trabalho: R$ ");
 
-        gasto_trabalho[i] = ler_num_virgula();
+        gastos_gerais.gasto_trabalho[i] = ler_num_virgula();
 
-        while(gasto_trabalho[i] == -1){
+        while(gastos_gerais.gasto_trabalho[i] == -1){
             printf("\nErro! Digite Novamente!");
 
             printf("\nGastos Trabalho: R$ ");
-                gasto_trabalho[i] = ler_num_virgula();
+                gastos_gerais.gasto_trabalho[i] = ler_num_virgula();
         }
 
         printf("Gastos Extras: R$ ");
 
-        gasto_extra[i] = ler_num_virgula();
+        gastos_gerais.gasto_extra[i] = ler_num_virgula();
 
-        while(gasto_extra[i] == -1){
+        while(gastos_gerais.gasto_extra[i] == -1){
             printf("\nErro! Digite Novamente!");
 
             printf("\nGastos Extra: R$ ");
-                gasto_extra[i] = ler_num_virgula();
+                gastos_gerais.gasto_extra[i] = ler_num_virgula();
         }
 
-        total_diario[i] = gasto_extra[i] + gasto_trabalho[i] + gasto_faculdade[i];
+        gastos_gerais.total_diario[i] = gastos_gerais.gasto_extra[i] + gastos_gerais.gasto_trabalho[i] + gastos_gerais.gasto_faculdade[i];
 
-        printf("\nGasto Diario Total: R$ %.2f\n", total_diario[i]);
+        printf("\nGasto Diario Total: R$ %.2f\n", gastos_gerais.total_diario[i]);
 
-        gasto_semanal = gasto_semanal + total_diario[i];
+        gasto_semanal = gasto_semanal + gastos_gerais.total_diario[i];
 
         }
 

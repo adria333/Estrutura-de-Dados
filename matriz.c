@@ -35,6 +35,8 @@ int main(){
     double notas[7][3]; //declarando matriz para armazenar 3 notas por materia (atividade, lista, prova)//
     double nota;
     double media;
+    double matriz_peso[7][3];
+    double peso;
 
     setlocale(LC_NUMERIC, "pt_BR.UTF-8"); //numeros com virgula//
 
@@ -47,14 +49,14 @@ int main(){
 
     printf("\n=== ADICIONE AS NOTAS ===\n");
     for(int i = 0; i < 7; i++){
-        printf("%s: \n", materias[i]); //descrevendo o nome das materias para a adicao das notas//
+        printf("\n%s: \n", materias[i]); //descrevendo o nome das materias para a adicao das notas//
 
         for(int j = 0; j<3; j++){ //lendo as notas//
             if(j == 0){
                 printf("\nNota da Atividade: ");
                 nota = ler_num_virgula();
 
-                while(nota == -1){
+                while(nota > 10.0 || nota < 0.0){
                     printf("\nErro! Digite Novamente!");
 
                     printf("\nNota da Atividade: ");
@@ -63,24 +65,48 @@ int main(){
 
                 notas[i][j] = nota; 
 
+                printf("\nDigite o peso: ");
+                peso = ler_num_virgula();
+
+                while(peso < 0.0){
+                    printf("\nErro! Digite Novamente!");
+
+                    printf("\nDigite o peso: ");
+                    peso = ler_num_virgula();
+                }
+
+                matriz_peso[i][j] = peso;
+
             }else if(j == 1){
-                printf("Nota da Lista: ");
+                printf("\nNota da Lista: ");
                 nota = ler_num_virgula();
 
-                while(nota == -1){
+                while(nota > 10.0 || nota < 0.0){
                     printf("\nErro! Digite Novamente!");
 
                     printf("\nNota da Lista: ");
                     nota = ler_num_virgula();
                 }
 
-                notas[i][j] = nota; 
+                notas[i][j] = nota;
+                
+                printf("\nDigite o peso: ");
+                peso = ler_num_virgula();
+
+                while(peso < 0.0){
+                    printf("\nErro! Digite Novamente!");
+
+                    printf("\nDigite o peso: ");
+                    peso = ler_num_virgula();
+                }
+
+                matriz_peso[i][j] = peso;
                 
             }else{
-                printf("Nota da Prova: ");
+                printf("\nNota da Prova: ");
                 nota = ler_num_virgula();
 
-                while(nota == -1){
+                while(nota > 10.0 || nota < 0.0){
                     printf("\nErro! Digite Novamente!");
 
                     printf("\nNota da Prova: ");
@@ -88,6 +114,18 @@ int main(){
                 }
 
                 notas[i][j] = nota; 
+
+                printf("\nDigite o peso: ");
+                peso = ler_num_virgula();
+
+                while(peso < 0.0){
+                    printf("\nErro! Digite Novamente!");
+
+                    printf("\nDigite o peso: ");
+                    peso = ler_num_virgula();
+                }
+
+                matriz_peso[i][j] = peso;
                 
             }
 
@@ -100,12 +138,14 @@ int main(){
     printf("\n=== MEDIA DAS NOTAS ===\n");
     for(int i = 0; i<7; i++){ //percorrendo materias//
         media = 0;
+        int soma_pesos = 0;
         
         for(int j=0; j<3; j++){ //somando notas//
-            media = media + notas[i][j];
+            media = media + (notas[i][j] * matriz_peso[i][j]);
+            soma_pesos = soma_pesos + matriz_peso[i][j];
         }
 
-        media = media/3;
+        media = media/soma_pesos;
 
         printf("\n%s: %.2f\n", materias[i], media);
 
@@ -118,3 +158,4 @@ int main(){
    
 
 }
+
